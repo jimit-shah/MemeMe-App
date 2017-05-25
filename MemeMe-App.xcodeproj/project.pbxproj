@@ -15,7 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF66573F1ED0FA0D00335B1B /* Image Picker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Image Picker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF66573F1ED0FA0D00335B1B /* MemeMe-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MemeMe-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6657421ED0FA0D00335B1B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF6657441ED0FA0D00335B1B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF6657471ED0FA0D00335B1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -38,7 +38,7 @@
 		EF6657361ED0FA0C00335B1B = {
 			isa = PBXGroup;
 			children = (
-				EF6657411ED0FA0D00335B1B /* Image Picker */,
+				EF6657411ED0FA0D00335B1B /* MemeMe-App */,
 				EF6657401ED0FA0D00335B1B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -46,12 +46,12 @@
 		EF6657401ED0FA0D00335B1B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EF66573F1ED0FA0D00335B1B /* Image Picker.app */,
+				EF66573F1ED0FA0D00335B1B /* MemeMe-App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EF6657411ED0FA0D00335B1B /* Image Picker */ = {
+		EF6657411ED0FA0D00335B1B /* MemeMe-App */ = {
 			isa = PBXGroup;
 			children = (
 				EF6657421ED0FA0D00335B1B /* AppDelegate.swift */,
@@ -61,15 +61,15 @@
 				EF66574B1ED0FA0D00335B1B /* LaunchScreen.storyboard */,
 				EF66574E1ED0FA0D00335B1B /* Info.plist */,
 			);
-			path = "Image Picker";
+			path = "MemeMe-App";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EF66573E1ED0FA0D00335B1B /* Image Picker */ = {
+		EF66573E1ED0FA0D00335B1B /* MemeMe-App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF6657511ED0FA0D00335B1B /* Build configuration list for PBXNativeTarget "Image Picker" */;
+			buildConfigurationList = EF6657511ED0FA0D00335B1B /* Build configuration list for PBXNativeTarget "MemeMe-App" */;
 			buildPhases = (
 				EF66573B1ED0FA0D00335B1B /* Sources */,
 				EF66573C1ED0FA0D00335B1B /* Frameworks */,
@@ -79,9 +79,9 @@
 			);
 			dependencies = (
 			);
-			name = "Image Picker";
+			name = "MemeMe-App";
 			productName = "Image Picker";
-			productReference = EF66573F1ED0FA0D00335B1B /* Image Picker.app */;
+			productReference = EF66573F1ED0FA0D00335B1B /* MemeMe-App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -100,7 +100,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EF66573A1ED0FA0C00335B1B /* Build configuration list for PBXProject "Image Picker" */;
+			buildConfigurationList = EF66573A1ED0FA0C00335B1B /* Build configuration list for PBXProject "MemeMe-App" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -113,7 +113,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF66573E1ED0FA0D00335B1B /* Image Picker */,
+				EF66573E1ED0FA0D00335B1B /* MemeMe-App */,
 			);
 		};
 /* End PBXProject section */
@@ -260,9 +260,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Image Picker/Info.plist";
+				INFOPLIST_FILE = "MemeMe-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jimitshah.Image-Picker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jimitshah.MemeMe-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -272,9 +272,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "Image Picker/Info.plist";
+				INFOPLIST_FILE = "MemeMe-App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.jimitshah.Image-Picker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jimitshah.MemeMe-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -283,7 +283,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EF66573A1ED0FA0C00335B1B /* Build configuration list for PBXProject "Image Picker" */ = {
+		EF66573A1ED0FA0C00335B1B /* Build configuration list for PBXProject "MemeMe-App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF66574F1ED0FA0D00335B1B /* Debug */,
@@ -292,13 +292,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF6657511ED0FA0D00335B1B /* Build configuration list for PBXNativeTarget "Image Picker" */ = {
+		EF6657511ED0FA0D00335B1B /* Build configuration list for PBXNativeTarget "MemeMe-App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF6657521ED0FA0D00335B1B /* Debug */,
 				EF6657531ED0FA0D00335B1B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
