@@ -18,6 +18,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomTextField: UITextField!
     
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     let memeTextAttributes:[String:Any] = [
         NSStrokeColorAttributeName:UIColor.black,
@@ -36,6 +38,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Hide toolbar and navbar
         toolbar.isHidden = true
+        navigationBar.isHidden = true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -45,8 +48,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Show toolbar and navbar
         toolbar.isHidden = false
+        navigationBar.isHidden = true
         
         return memedImage
+    }
+    
+    
+    func save() {
+        // Create the meme
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
     }
     
     @IBAction func share(_ sender: Any) {
@@ -56,13 +69,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.present(controller, animated: true, completion: nil)
         
 //        UIActivityViewControllerCompletionWithItemsHandler
-        save()
+        
     }
     
-    func save() {
-        // Create the meme
-//        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
-    }
     
     
     @IBAction func topTextField(_ sender: UITextField) {

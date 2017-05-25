@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Image_Picker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -57,22 +57,34 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJT-bj-MMo">
                                 <rect key="frame" x="0.0" y="523" width="320" height="44"/>
                                 <items>
+                                    <barButtonItem systemItem="camera" id="mTV-1y-CsW">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="3Cz-PQ-9tt"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Pick" id="XhS-tI-WC8">
                                         <connections>
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="DRP-BG-awu"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Camera" id="mTV-1y-CsW">
-                                        <connections>
-                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="3Cz-PQ-9tt"/>
-                                        </connections>
-                                    </barButtonItem>
                                 </items>
                             </toolbar>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3k-1p-6Jx">
-                                <rect key="frame" x="-4" y="0.0" width="328" height="44"/>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-i7-gNe">
+                                <rect key="frame" x="0.0" y="11" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="aZm-er-n5e"/>
+                                    <navigationItem id="twc-cR-v4u">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="yNm-Qz-qA7">
+                                            <connections>
+                                                <action selector="share:" destination="BYZ-38-t0r" id="Moh-6M-gXt"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Z9C-eO-UBi">
+                                            <connections>
+                                                <action selector="cancelButton:" destination="BYZ-38-t0r" id="qPZ-yA-cab"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -85,11 +97,8 @@
                             <constraint firstItem="ihY-A8-0I9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ETM-y9-hTG"/>
                             <constraint firstItem="ihY-A8-0I9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="J8e-9e-mia"/>
                             <constraint firstItem="SJT-bj-MMo" firstAttribute="top" secondItem="ihY-A8-0I9" secondAttribute="bottom" id="MxH-4b-BgA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="w3k-1p-6Jx" secondAttribute="trailing" constant="-20" id="Q2T-bM-ASE"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SJT-bj-MMo" secondAttribute="bottom" constant="1" id="TPY-w4-1kA"/>
-                            <constraint firstItem="w3k-1p-6Jx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="UUZ-9v-mUx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ihY-A8-0I9" secondAttribute="trailing" constant="-20" id="bBq-Hx-gfS"/>
-                            <constraint firstItem="w3k-1p-6Jx" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="hHK-3t-4rL"/>
                             <constraint firstItem="SJT-bj-MMo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="huh-pA-Y0s"/>
                             <constraint firstItem="lQ1-hV-myb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tCP-BJ-aZv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="SJT-bj-MMo" secondAttribute="trailing" constant="-16" id="vCL-M1-P6b"/>
@@ -100,6 +109,8 @@
                         <outlet property="bottomTextField" destination="lQ1-hV-myb" id="VWj-FT-6WD"/>
                         <outlet property="cameraButton" destination="mTV-1y-CsW" id="k4S-W2-oql"/>
                         <outlet property="imagePickerView" destination="ihY-A8-0I9" id="VZa-Ea-7w7"/>
+                        <outlet property="navigationBar" destination="K2v-i7-gNe" id="q0y-Cv-XFJ"/>
+                        <outlet property="shareButton" destination="yNm-Qz-qA7" id="xAb-8X-qAL"/>
                         <outlet property="toolbar" destination="SJT-bj-MMo" id="DAK-Si-Php"/>
                         <outlet property="topTextField" destination="Vfv-gr-Mzt" id="I8m-0N-tN3"/>
                     </connections>
