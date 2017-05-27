@@ -34,9 +34,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="topTextField:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="dAd-Di-eKD"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQ1-hV-myb" userLabel="Bottom TextField">
                                 <rect key="frame" x="0.0" y="474" width="320" height="30"/>
@@ -47,9 +44,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <action selector="bottomTextField:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="ntR-vl-PBK"/>
-                                </connections>
                             </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2v-i7-gNe">
                                 <rect key="frame" x="0.0" y="10" width="320" height="44"/>
@@ -85,7 +79,7 @@
                                     </barButtonItem>
                                     <barButtonItem title="Album" id="XhS-tI-WC8">
                                         <connections>
-                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="DRP-BG-awu"/>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="xwi-Zx-Uwq"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="o78-U3-y7R"/>
