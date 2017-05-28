@@ -24,12 +24,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: Text Field Delegate object
     let textFieldDelegate = TextFieldDelegate()
-
-    
     let memeTextAttributes:[String:Any] = [
         NSStrokeColorAttributeName:UIColor.black,
         NSForegroundColorAttributeName: UIColor.white,
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
         NSStrokeWidthAttributeName: -3.0]
 
     struct Meme {
@@ -53,11 +51,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: Share the Memed Image
     @IBAction func share(_ sender: Any) {
         let memedImage = generateMemedImage()
-        let avController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
-        self.present(avController, animated: true, completion: nil)
+        let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        self.present(activityViewController, animated: true, completion: nil)
         
         // Hint for the 2.0 version
        // UIActivityViewControllerCompletionWithItemsHandler
+        activityViewController.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            if success{
+                self.save() // call save- which is in progress.
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
        }
     
     override func viewDidLoad() {
@@ -73,19 +78,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.textAlignment = .center
         
         cancelButton.isEnabled = true
+        shareButton.isEnabled = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
         subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
-        
     }
     
     func keyboardWillShow(_ notification:Notification) {
@@ -124,7 +128,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             imagePickerView.image = image
             setDefaultTexts()
         }
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: { () -> Void in
+            self.shareButton.isEnabled = true
+        })
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

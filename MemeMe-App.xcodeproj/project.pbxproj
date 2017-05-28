@@ -13,6 +13,7 @@
 		EF66574A1ED0FA0D00335B1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF6657491ED0FA0D00335B1B /* Assets.xcassets */; };
 		EF66574D1ED0FA0D00335B1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF66574B1ED0FA0D00335B1B /* LaunchScreen.storyboard */; };
 		EF849CE21EDA3FA300B95C7F /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF849CE11EDA3FA300B95C7F /* TextFieldDelegate.swift */; };
+		EF849CE51EDA56C500B95C7F /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF849CE41EDA55BE00B95C7F /* impact.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		EF66574C1ED0FA0D00335B1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF66574E1ED0FA0D00335B1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF849CE11EDA3FA300B95C7F /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
+		EF849CE41EDA55BE00B95C7F /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		EF6657411ED0FA0D00335B1B /* MemeMe-App */ = {
 			isa = PBXGroup;
 			children = (
+				EF849CE31EDA553500B95C7F /* Fonts */,
 				EF6657421ED0FA0D00335B1B /* AppDelegate.swift */,
 				EF6657441ED0FA0D00335B1B /* ViewController.swift */,
 				EF849CE11EDA3FA300B95C7F /* TextFieldDelegate.swift */,
@@ -65,6 +68,14 @@
 				EF66574E1ED0FA0D00335B1B /* Info.plist */,
 			);
 			path = "MemeMe-App";
+			sourceTree = "<group>";
+		};
+		EF849CE31EDA553500B95C7F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EF849CE41EDA55BE00B95C7F /* impact.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF849CE51EDA56C500B95C7F /* impact.ttf in Resources */,
 				EF66574D1ED0FA0D00335B1B /* LaunchScreen.storyboard in Resources */,
 				EF66574A1ED0FA0D00335B1B /* Assets.xcassets in Resources */,
 				EF6657481ED0FA0D00335B1B /* Main.storyboard in Resources */,
