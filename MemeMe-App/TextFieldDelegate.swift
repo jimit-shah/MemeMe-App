@@ -9,16 +9,21 @@
 import Foundation
 import UIKit
 
+// MARK: - TextFieldDelegate: NSObject, UITextFieldDelegate
 
 class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
+    // Hide keyboard on pressing return
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
+    // Clear default texts from text field
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+        if (textField.text == "TOP" || textField.text == "BOTTOM") {
+            textField.text = ""
+        }
     }
     
 }

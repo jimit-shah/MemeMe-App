@@ -8,8 +8,11 @@
 
 import UIKit
 
+// MARK: - ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    // MARK: Outlets
     @IBOutlet weak var imagePickerView: UIImageView!
     
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -24,6 +27,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: Text Field Delegate object
     let textFieldDelegate = TextFieldDelegate()
+    
+    // MARK: Properties
     let memeTextAttributes:[String:Any] = [
         NSStrokeColorAttributeName:UIColor.black,
         NSForegroundColorAttributeName: UIColor.white,
@@ -42,20 +47,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.text = "BOTTOM"
     }
     
-    // MARK: Cancel Button to Clear/Reset Image and texts.
+    // MARK: Action Cancel to reset image editor.
     @IBAction func cancelButton(_ sender: Any) {
         imagePickerView.image = nil
         setDefaultTexts()
     }
     
-    // MARK: Share the Memed Image
+    // MARK: Action Share memed image
     @IBAction func share(_ sender: Any) {
         let memedImage = generateMemedImage()
         let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         self.present(activityViewController, animated: true, completion: nil)
         
         // Hint for the 2.0 version
-       // UIActivityViewControllerCompletionWithItemsHandler
+        // UIActivityViewControllerCompletionWithItemsHandler
         activityViewController.completionWithItemsHandler = {
             (activity, success, items, error) in
             if success{
@@ -65,6 +70,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
        }
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setDefaultTexts()
@@ -83,7 +89,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Enable Camera Button if hardware is available
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
         subscribeToKeyboardNotifications()
     }
     
@@ -137,40 +146,43 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
-    // MARK: Pick an Image from Album
-    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        self.present(pickerController, animated: true, completion: nil)
-    }
-    
-    // MARK: Pick an Image from Camera (If Hardaware is available)
-    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+    // MARK: Image Picker Controller
+    func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        imagePickerController.sourceType = .camera
+        imagePickerController.sourceType = sourceType
         self.present(imagePickerController, animated: true, completion: nil)
+    }
+
+    // MARK: Action Pick An Image From Album
+    @IBAction func pickAnImageFromAlbum(_ sender: Any) {
+        pickAnImage(.photoLibrary)
+    }
+    
+    // MARK: Action Pick An Image From Camera
+    @IBAction func pickAnImageFromCamera(_ sender: Any) {
+        pickAnImage(.camera)
     }
     
     func generateMemedImage() -> UIImage {
-        // Hide toolbar and navbar
+        // Hide Toolbar and Navbar
         toolbar.isHidden = true
         navigationBar.isHidden = true
         
-        // Render view to an image
+        // Render View to an Image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        // Show toolbar and navbar
+        // Show Toolbar and Navbar
         toolbar.isHidden = false
         navigationBar.isHidden = true
         
         return memedImage
     }
     
+    // MARK: Method Save
     func save() {
         // Create the meme
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
