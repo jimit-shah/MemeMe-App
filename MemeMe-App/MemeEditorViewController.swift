@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - ViewController: UIViewController
 
-class ViewController: UIViewController {
+class MemeEditorViewController: UIViewController {
   
   // MARK: Outlets
   @IBOutlet weak var imagePickerView: UIImageView!
@@ -99,14 +99,12 @@ class ViewController: UIViewController {
   
   func keyboardWillShow(_ notification:Notification) {
     if bottomTextField.isFirstResponder {
-      view.frame.origin.y = 0 - getKeyboardHeight(notification)
+      view.frame.origin.y = -getKeyboardHeight(notification)
     }
   }
   
   func keyboardWillHide(_ notification:Notification) {
-    if bottomTextField.isFirstResponder {
-      view.frame.origin.y = 0
-    }
+    view.frame.origin.y = 0
   }
   
   // MARK: Get Keyboard Height
@@ -159,7 +157,7 @@ class ViewController: UIViewController {
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
-extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   
   // MARK: Image Picker Controller
   
@@ -177,7 +175,7 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
     dismiss(animated: true, completion: nil)
   }
   
-  func pickAnImage(_ sourceType: UIImagePickerControllerSourceType) {
+  func getImagePickerController(_ sourceType: UIImagePickerControllerSourceType) {
     let imagePickerController = UIImagePickerController()
     imagePickerController.delegate = self
     imagePickerController.sourceType = sourceType
@@ -186,12 +184,12 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
   
   // MARK: Actions
   
-  @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-    pickAnImage(.photoLibrary)
-  }
-  
-  @IBAction func pickAnImageFromCamera(_ sender: Any) {
-    pickAnImage(.camera)
+  @IBAction func pickAnImage(_ sender: AnyObject) {
+    if sender.tag == 1 {
+      getImagePickerController(.camera)
+    } else {
+      getImagePickerController(.photoLibrary)
+    }
   }
   
 }
