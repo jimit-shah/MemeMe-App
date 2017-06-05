@@ -12,19 +12,19 @@ import UIKit
 // MARK: - TextFieldDelegate: NSObject, UITextFieldDelegate
 
 class TextFieldDelegate: NSObject, UITextFieldDelegate {
-    
-    // Hide keyboard on pressing return
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+  
+  // Hide keyboard on pressing return
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+  }
+  
+  // Clear default texts from text field
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    if (textField.text == "TOP" || textField.text == "BOTTOM") {
+      textField.text = ""
     }
-    
-    // Clear default texts from text field
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (textField.text == "TOP" || textField.text == "BOTTOM") {
-            textField.text = ""
-        }
-    }
-    
+  }
+  
 }
 
