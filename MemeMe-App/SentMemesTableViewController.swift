@@ -22,6 +22,11 @@ class SentMemesTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+//    if (memes?.count) != nil {
+//      let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+//      self.present(memeEditorViewController, animated: true, completion: nil)
+//    }
   }
   
   // MARK: Life Cycle
@@ -33,6 +38,12 @@ class SentMemesTableViewController: UITableViewController {
     memes = appDelegate.memes
     //print("memes: \(memes)")
     tableView.reloadData()
+    
+    if memes.count == 0 {
+      let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+      self.present(memeEditorViewController, animated: true, completion: nil)
+    }
+    
   }
   
   // MARK: Actions
@@ -59,14 +70,14 @@ class SentMemesTableViewController: UITableViewController {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SentMemeTableViewCell", for: indexPath) as! SentMemeTableViewCell
     
     let meme = self.memes[indexPath.row]
-    let detail = "\(meme.topText)...\(meme.bottomText)"
+    
     // set the image and texts
     
     cell.sentMemeImageView?.image = meme.originalImage
     configure(textfield: cell.top, withText: meme.topText)
     configure(textfield: cell.bottom, withText: meme.bottomText)
     
-    cell.label?.text = detail
+    cell.label?.text = "\(meme.topText)...\(meme.bottomText)"
     
     return cell
   }

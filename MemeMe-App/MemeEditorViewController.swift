@@ -73,14 +73,19 @@ class MemeEditorViewController: UIViewController {
   }
   
   // MARK: Life Cycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     configure(textfield: self.topTextField, withText: "TOP")
     configure(textfield: self.bottomTextField, withText: "BOTTOM")
-    
     cancelButton.isEnabled = true
     shareButton.isEnabled = false
+  }
+  
+  // Hide Status Bar
+  
+  override var prefersStatusBarHidden: Bool {
+    return true
   }
   
   override func viewWillAppear(_ animated: Bool) {
