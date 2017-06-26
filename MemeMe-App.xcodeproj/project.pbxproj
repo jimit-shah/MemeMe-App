@@ -18,6 +18,7 @@
 		EF849CE21EDA3FA300B95C7F /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF849CE11EDA3FA300B95C7F /* TextFieldDelegate.swift */; };
 		EF849CE51EDA56C500B95C7F /* impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF849CE41EDA55BE00B95C7F /* impact.ttf */; };
 		EF849CEB1EE5008D00B95C7F /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF849CEA1EE5008D00B95C7F /* Meme.swift */; };
+		EF9238DC1F00DB9D007F124C /* SentMemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF9238DB1F00DB9D007F124C /* SentMemeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		EF849CE11EDA3FA300B95C7F /* TextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		EF849CE41EDA55BE00B95C7F /* impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = impact.ttf; sourceTree = "<group>"; };
 		EF849CEA1EE5008D00B95C7F /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		EF9238DB1F00DB9D007F124C /* SentMemeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SentMemeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				EF6786561EFB4C9C006F59C0 /* SentMemesCollectionViewController.swift */,
 				EF67865C1EFB6E02006F59C0 /* SentMemeCollectionViewCell.swift */,
 				EF6786581EFB5C9E006F59C0 /* SentMemesTableViewController.swift */,
+				EF9238DB1F00DB9D007F124C /* SentMemeTableViewCell.swift */,
 				EF6657441ED0FA0D00335B1B /* MemeEditorViewController.swift */,
 				EF849CE11EDA3FA300B95C7F /* TextFieldDelegate.swift */,
 				EF6657491ED0FA0D00335B1B /* Assets.xcassets */,
@@ -170,6 +173,7 @@
 				EF67865D1EFB6E02006F59C0 /* SentMemeCollectionViewCell.swift in Sources */,
 				EF6657431ED0FA0D00335B1B /* AppDelegate.swift in Sources */,
 				EF849CE21EDA3FA300B95C7F /* TextFieldDelegate.swift in Sources */,
+				EF9238DC1F00DB9D007F124C /* SentMemeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

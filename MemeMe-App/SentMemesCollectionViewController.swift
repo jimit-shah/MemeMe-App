@@ -21,11 +21,22 @@ class SentMemesCollectionViewController: UICollectionViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    memes = appDelegate.memes
     adjustFlowLayout(size: view.frame.size)
   }
+  
+  // MARK: Life Cycle
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    // Fetch data from App Deligate
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    memes = appDelegate.memes
+    
+    // Reload data in collection view
+    collectionView?.reloadData()
+  }
+  
   
   func adjustFlowLayout(size: CGSize) {
     let space: CGFloat = 3.0
@@ -42,15 +53,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
   }
   
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemesCollectionViewCell", for: indexPath) as! SentMemeCollectionViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemeCollectionViewCell", for: indexPath) as! SentMemeCollectionViewCell
     let meme = self.memes[(indexPath as NSIndexPath).row]
     
     cell.sentMemeImageView.image = meme.memedImage
+    
     return cell
   }
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+    // add code for detailViewcontroller
   }
   
   // MARK: Actions
