@@ -14,4 +14,6 @@ class SentMemeCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var sentMemeImageView: UIImageView!
   
+  @IBOutlet weak var topTextField: UITextField!
+  @IBOutlet weak var bottomTextField: UITextField!
 }

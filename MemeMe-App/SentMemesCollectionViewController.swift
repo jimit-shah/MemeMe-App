@@ -17,6 +17,13 @@ class SentMemesCollectionViewController: UICollectionViewController {
   
   @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
   
+  // MARK: Actions
+  
+  @IBAction func addMeme(_ sender: Any) {
+    let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
+    self.present(memeEditorViewController, animated: true, completion: nil)
+  }
+
   // MARK: Life Cycle
   
   override func viewDidLoad() {
@@ -63,12 +70,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     // add code for detailViewcontroller
-  }
-  
-  // MARK: Actions
-  @IBAction func addMeme(_ sender: Any) {
-    let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
-    self.present(memeEditorViewController, animated: true, completion: nil)
   }
   
   

@@ -9,24 +9,13 @@
 import UIKit
 
 class SentMemesTableViewController: UITableViewController {
-
+  
   // MARK: Properties
   
   var memes: [Meme]!
   
-  let memeTextAttributes:[String:Any] = [
-    NSStrokeColorAttributeName:UIColor.black,
-    NSForegroundColorAttributeName: UIColor.white,
-    NSFontAttributeName: UIFont(name: "Impact", size: 15)!,
-    NSStrokeWidthAttributeName: -3.0]
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-//    if (memes?.count) != nil {
-//      let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
-//      self.present(memeEditorViewController, animated: true, completion: nil)
-//    }
   }
   
   // MARK: Life Cycle
@@ -52,7 +41,7 @@ class SentMemesTableViewController: UITableViewController {
     let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
     self.present(memeEditorViewController, animated: true, completion: nil)
   }
-
+  
   // MARK: Table View Data Source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,19 +63,15 @@ class SentMemesTableViewController: UITableViewController {
     // set the image and texts
     
     cell.sentMemeImageView?.image = meme.originalImage
-    configure(textfield: cell.top, withText: meme.topText)
-    configure(textfield: cell.bottom, withText: meme.bottomText)
+    
+    if let tbc = self.tabBarController as? SentMemesTabBarController {
+      tbc.configureTextFields(textfield: cell.top, withText: meme.topText)
+      tbc.configureTextFields(textfield: cell.bottom, withText: meme.bottomText)
+    }
     
     cell.label?.text = "\(meme.topText)...\(meme.bottomText)"
     
     return cell
   }
-  
-  func configure(textfield: UITextField, withText: String) {
-    textfield.text = withText
-    textfield.defaultTextAttributes = memeTextAttributes
-    textfield.textAlignment = .center
-  }
-
   
 }

@@ -45,7 +45,7 @@ class MemeEditorViewController: UIViewController {
   @IBAction func cancelButton(_ sender: Any) {
     imagePickerView.image = nil
     resetControls()
-    
+    self.dismiss(animated: true, completion: nil)
   }
   
   // MARK: Action Share memed image
@@ -54,7 +54,6 @@ class MemeEditorViewController: UIViewController {
     let activityViewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
     self.present(activityViewController, animated: true, completion: nil)
     
-    // Hint for the 2.0 version
     // UIActivityViewControllerCompletionWithItemsHandler
     activityViewController.completionWithItemsHandler = {
       (activity, success, items, error) in
@@ -90,6 +89,12 @@ class MemeEditorViewController: UIViewController {
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let memes = appDelegate.memes
+     if memes.count == 0 {
+      cancelButton.isEnabled = false
+    }
     
     // Enable Camera Button if hardware is available
     cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -204,4 +209,6 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
   }
   
 }
+
+
 

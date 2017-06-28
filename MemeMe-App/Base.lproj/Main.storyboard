@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Sent Memes Tab Bar Controller-->
         <scene sceneID="uvs-OU-vbR">
             <objects>
-                <tabBarController id="Zoq-hX-Fhh" sceneMemberID="viewController">
+                <tabBarController id="Zoq-hX-Fhh" customClass="SentMemesTabBarController" customModule="MemeMe_App" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="IAS-9L-aUL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -180,9 +180,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="115"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-5w-DoO">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fTp-5w-DoO">
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="115"/>
                                         </imageView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="TOP" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lb6-q1-PcI" userLabel="Top">
+                                            <rect key="frame" x="14" y="10" width="97" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="BOTTOM" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KnT-xs-ABf" userLabel="Bottom">
+                                            <rect key="frame" x="14" y="78" width="97" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="15"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
                                     </subviews>
                                 </view>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -193,7 +207,9 @@
                                     <constraint firstItem="fTp-5w-DoO" firstAttribute="leading" secondItem="K6H-4p-Z2v" secondAttribute="leading" id="aoB-AQ-vkB"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="bottomTextField" destination="KnT-xs-ABf" id="HTJ-vm-2Gp"/>
                                     <outlet property="sentMemeImageView" destination="fTp-5w-DoO" id="CkV-WP-qLT"/>
+                                    <outlet property="topTextField" destination="Lb6-q1-PcI" id="doF-Zi-a9a"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
