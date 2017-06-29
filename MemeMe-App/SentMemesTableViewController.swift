@@ -38,10 +38,12 @@ class SentMemesTableViewController: UITableViewController {
   // MARK: Actions
   
   @IBAction func addMeme(_ sender: Any) {
-    let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
-    self.present(memeEditorViewController, animated: true, completion: nil)
+    if let tbc = self.tabBarController as? SentMemesTabBarController {
+    tbc.getMemeEditor(viewController: self)
+    }
   }
   
+    
   // MARK: Table View Data Source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,8 +67,8 @@ class SentMemesTableViewController: UITableViewController {
     cell.sentMemeImageView?.image = meme.originalImage
     
     if let tbc = self.tabBarController as? SentMemesTabBarController {
-      tbc.configureTextFields(textfield: cell.top, withText: meme.topText)
-      tbc.configureTextFields(textfield: cell.bottom, withText: meme.bottomText)
+      tbc.configureTextFields(textfield: cell.topTextField, withText: meme.topText)
+      tbc.configureTextFields(textfield: cell.bottomTextField, withText: meme.bottomText)
     }
     
     cell.label?.text = "\(meme.topText)...\(meme.bottomText)"

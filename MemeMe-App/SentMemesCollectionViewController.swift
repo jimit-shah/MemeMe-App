@@ -13,6 +13,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
   
   var memes: [Meme]!
   
+  let inset: CGFloat = 8.0
+  let spacing: CGFloat = 8.0
+  let lineSpacing: CGFloat = 8.0
+  
   // MARK: Outlets
   
   @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
@@ -20,15 +24,25 @@ class SentMemesCollectionViewController: UICollectionViewController {
   // MARK: Actions
   
   @IBAction func addMeme(_ sender: Any) {
-    let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
-    self.present(memeEditorViewController, animated: true, completion: nil)
+    if let tbc = self.tabBarController as? SentMemesTabBarController {
+      tbc.getMemeEditor(viewController: self)
+    }
   }
-
+  
   // MARK: Life Cycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    adjustFlowLayout(size: view.frame.size)
+    //adjustFlowLayout(size: view.frame.size)
+  }
+  
+  override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    super.viewWillTransition(to: size, with: coordinator)
+    self.collectionView?.collectionViewLayout.invalidateLayout()
+  }
+  
+  func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+    return true
   }
   
   // MARK: Life Cycle
@@ -44,15 +58,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     collectionView?.reloadData()
   }
   
-  
-  func adjustFlowLayout(size: CGSize) {
-    let space: CGFloat = 3.0
-    let dimension:CGFloat = size.width > size.height ? (size.width - (4 * space)) / 5.0 : (size.width - (2 * space)) / 3.0
-    flowLayout.minimumLineSpacing = space
-    flowLayout.minimumInteritemSpacing = space
-    flowLayout.itemSize = CGSize(width: dimension, height: dimension)
-  }
-  
   // MARK: Collection View Data Source
   
   override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,14 +68,49 @@ class SentMemesCollectionViewController: UICollectionViewController {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemeCollectionViewCell", for: indexPath) as! SentMemeCollectionViewCell
     let meme = self.memes[(indexPath as NSIndexPath).row]
     
-    cell.sentMemeImageView.image = meme.memedImage
+    // set the image and texts
+    
+    cell.sentMemeImageView?.image = meme.originalImage
+    
+    if let tbc = self.tabBarController as? SentMemesTabBarController {
+      tbc.configureTextFields(textfield: cell.topTextField, withText: meme.topText)
+      tbc.configureTextFields(textfield: cell.bottomTextField, withText: meme.bottomText)
+    }
     
     return cell
   }
+  
+  // MARK: Detail View Controller
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     // add code for detailViewcontroller
   }
   
+}
+
+
+// MARK: UICollectionViewDelegateFlowLayout
+
+extension SentMemesCollectionViewController: UICollectionViewDelegateFlowLayout {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    let columns: CGFloat = collectionView.frame.width > collectionView.frame.height ? 5.0 : 3.0
+    
+    let dimension = Int((collectionView.frame.width / columns) - (inset + spacing))
+    
+    return CGSize(width: dimension, height: dimension)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return spacing
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    return lineSpacing
+  }
   
 }

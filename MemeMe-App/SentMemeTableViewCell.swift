@@ -13,8 +13,8 @@ class SentMemeTableViewCell: UITableViewCell {
     // MARK: Outlets
 
   @IBOutlet weak var sentMemeImageView: UIImageView!
-  @IBOutlet weak var top: UITextField!
-  @IBOutlet weak var bottom: UITextField!
+  @IBOutlet weak var topTextField: UITextField!
+  @IBOutlet weak var bottomTextField: UITextField!
   
   @IBOutlet weak var label: UILabel!
   
