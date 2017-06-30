@@ -25,6 +25,10 @@ class MemeEditorViewController: UIViewController {
   @IBOutlet weak var shareButton: UIBarButtonItem!
   @IBOutlet weak var cancelButton: UIBarButtonItem!
   
+  var topText = "TOP"
+  var bottomText = "BOTTOM"
+  var originalImage: UIImage? = nil
+  
   // MARK: Text Field Delegate object
   let textFieldDelegate = TextFieldDelegate()
   
@@ -36,14 +40,18 @@ class MemeEditorViewController: UIViewController {
     NSStrokeWidthAttributeName: -3.0]
   
   func resetControls() {
-    topTextField.text = "TOP"
-    bottomTextField.text = "BOTTOM"
-    shareButton.isEnabled = false
+    topTextField.text = topText
+    bottomTextField.text = bottomText
+    if originalImage != nil {
+      shareButton.isEnabled = true
+    } else {
+      shareButton.isEnabled = false
+    }
   }
   
   // MARK: Action Cancel to reset image editor.
   @IBAction func cancelButton(_ sender: Any) {
-    imagePickerView.image = nil
+    imagePickerView.image = originalImage
     resetControls()
     self.dismiss(animated: true, completion: nil)
   }
@@ -75,10 +83,16 @@ class MemeEditorViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    configure(textfield: self.topTextField, withText: "TOP")
-    configure(textfield: self.bottomTextField, withText: "BOTTOM")
+    configure(textfield: self.topTextField, withText: topText)
+    configure(textfield: self.bottomTextField, withText: bottomText)
+    imagePickerView.image = originalImage
     cancelButton.isEnabled = true
-    shareButton.isEnabled = false
+    if originalImage != nil {
+      shareButton.isEnabled = true
+    } else {
+      shareButton.isEnabled = false
+    }
+    
   }
   
   // Hide Status Bar
@@ -92,7 +106,7 @@ class MemeEditorViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let memes = appDelegate.memes
-     if memes.count == 0 {
+    if memes.count == 0 {
       cancelButton.isEnabled = false
     }
     
@@ -142,6 +156,7 @@ class MemeEditorViewController: UIViewController {
     // Render View to an Image
     UIGraphicsBeginImageContext(self.view.frame.size)
     view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+    imagePickerView.backgroundColor = .white
     let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
     
@@ -160,14 +175,14 @@ class MemeEditorViewController: UIViewController {
   func save() {
     // Create the meme
     let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
-  
+    
     // Add it to the memes array on the Application Delegate
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     appDelegate.memes.append(meme)
     
   }
   
-
+  
 }
 
 

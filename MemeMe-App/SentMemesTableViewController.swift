@@ -25,9 +25,11 @@ class SentMemesTableViewController: UITableViewController {
     //print("\nIn SentMemesTableViewController.viewWillAppear..")
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     memes = appDelegate.memes
-    //print("memes: \(memes)")
+    
+    // Reload data
     tableView.reloadData()
     
+    // If no Meme saved then launch Meme Editor
     if memes.count == 0 {
       let memeEditorViewController = self.storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController") as! MemeEditorViewController
       self.present(memeEditorViewController, animated: true, completion: nil)
@@ -39,15 +41,15 @@ class SentMemesTableViewController: UITableViewController {
   
   @IBAction func addMeme(_ sender: Any) {
     if let tbc = self.tabBarController as? SentMemesTabBarController {
-    tbc.getMemeEditor(viewController: self)
+      tbc.getMemeEditor(viewController: self)
     }
   }
   
-    
+  
   // MARK: Table View Data Source
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    print("self.memes.count \(self.memes.count)")
+    //print("self.memes.count \(self.memes.count)")
     return self.memes.count
   }
   
@@ -74,6 +76,15 @@ class SentMemesTableViewController: UITableViewController {
     cell.label?.text = "\(meme.topText)...\(meme.bottomText)"
     
     return cell
+  }
+  
+  // MARK: Instantiate Detail View Controller
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    let detailController = self.storyboard!.instantiateViewController(withIdentifier: "SentMemeDetailViewController") as! SentMemeDetailViewController
+    detailController.meme = self.memes[(indexPath as NSIndexPath).row]
+    self.navigationController!.pushViewController(detailController, animated: true)
   }
   
 }
