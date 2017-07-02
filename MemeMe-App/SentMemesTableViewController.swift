@@ -14,10 +14,6 @@ class SentMemesTableViewController: UITableViewController {
   
   var memes: [Meme]!
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-  
   // MARK: Life Cycle
   
   override func viewWillAppear(_ animated: Bool) {
@@ -48,16 +44,18 @@ class SentMemesTableViewController: UITableViewController {
   
   // MARK: Table View Data Source
   
+  // numberOfRowsInSection
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //print("self.memes.count \(self.memes.count)")
     return self.memes.count
   }
   
-  
+  // heightForRowAt
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     return 100
   }
   
+  // cellForRowAt
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "SentMemeTableViewCell", for: indexPath) as! SentMemeTableViewCell
@@ -81,10 +79,9 @@ class SentMemesTableViewController: UITableViewController {
   // MARK: Instantiate Detail View Controller
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-    let detailController = self.storyboard!.instantiateViewController(withIdentifier: "SentMemeDetailViewController") as! SentMemeDetailViewController
-    detailController.meme = self.memes[(indexPath as NSIndexPath).row]
-    self.navigationController!.pushViewController(detailController, animated: true)
+    if let tbc = self.tabBarController as? SentMemesTabBarController {
+      tbc.getDetailView(self, indexPath: indexPath)
+    }
   }
   
 }

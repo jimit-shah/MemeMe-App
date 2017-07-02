@@ -287,7 +287,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
                                     <navigationItem id="twc-cR-v4u">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="yNm-Qz-qA7">
+                                        <barButtonItem key="leftBarButtonItem" tag="2" systemItem="action" id="yNm-Qz-qA7">
                                             <connections>
                                                 <action selector="share:" destination="BYZ-38-t0r" id="Moh-6M-gXt"/>
                                             </connections>

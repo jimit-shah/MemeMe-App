@@ -45,8 +45,6 @@ class SentMemesCollectionViewController: UICollectionViewController {
     return true
   }
   
-  // MARK: Life Cycle
-  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
@@ -64,6 +62,7 @@ class SentMemesCollectionViewController: UICollectionViewController {
     return self.memes.count
   }
   
+  // cellForItemAt
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SentMemeCollectionViewCell", for: indexPath) as! SentMemeCollectionViewCell
     let meme = self.memes[(indexPath as NSIndexPath).row]
@@ -80,20 +79,21 @@ class SentMemesCollectionViewController: UICollectionViewController {
     return cell
   }
   
-  // MARK: Detail View Controller
+  // MARK: DetailViewController
   
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    let detailViewController = self.storyboard?.instantiateViewController(withIdentifier: "SentMemeDetailViewController") as! SentMemeDetailViewController
-    detailViewController.meme = self.memes[(indexPath as NSIndexPath).row]
-    self.navigationController!.pushViewController(detailViewController, animated: true)
+    
+    if let tbc = self.tabBarController as? SentMemesTabBarController {
+      tbc.getDetailView(self, indexPath: indexPath)
+    }
   }
   
 }
 
-
 // MARK: UICollectionViewDelegateFlowLayout
 
 extension SentMemesCollectionViewController: UICollectionViewDelegateFlowLayout {
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
     let columns: CGFloat = collectionView.frame.width > collectionView.frame.height ? 5.0 : 3.0

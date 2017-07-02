@@ -42,12 +42,10 @@ class MemeEditorViewController: UIViewController {
   func resetControls() {
     topTextField.text = topText
     bottomTextField.text = bottomText
-    if originalImage != nil {
-      shareButton.isEnabled = true
-    } else {
-      shareButton.isEnabled = false
-    }
+    enableBarButton(shareButton)
   }
+  
+  // MARK: Actions
   
   // MARK: Action Cancel to reset image editor.
   @IBAction func cancelButton(_ sender: Any) {
@@ -72,6 +70,15 @@ class MemeEditorViewController: UIViewController {
     }
   }
   
+  // MARK: Action Pick an Image
+  @IBAction func pickAnImage(_ sender: AnyObject) {
+    if sender.tag == 1 {
+      getImagePickerController(.camera)
+    } else {
+      getImagePickerController(.photoLibrary)
+    }
+  }
+  
   func configure(textfield: UITextField, withText: String) {
     textfield.text = withText
     textfield.delegate = textFieldDelegate
@@ -86,17 +93,19 @@ class MemeEditorViewController: UIViewController {
     configure(textfield: self.topTextField, withText: topText)
     configure(textfield: self.bottomTextField, withText: bottomText)
     imagePickerView.image = originalImage
-    cancelButton.isEnabled = true
-    if originalImage != nil {
-      shareButton.isEnabled = true
+    enableBarButton(cancelButton)
+    enableBarButton(shareButton)
+  }
+  
+  func enableBarButton(_ barButton: UIBarButtonItem) {
+    if barButton.tag == 2 {
+      barButton.isEnabled = (originalImage != nil)
     } else {
-      shareButton.isEnabled = false
+      barButton.isEnabled = true
     }
-    
   }
   
   // Hide Status Bar
-  
   override var prefersStatusBarHidden: Bool {
     return true
   }
@@ -182,7 +191,6 @@ class MemeEditorViewController: UIViewController {
     
   }
   
-  
 }
 
 
@@ -213,15 +221,7 @@ extension MemeEditorViewController: UIImagePickerControllerDelegate, UINavigatio
     self.present(imagePickerController, animated: true, completion: nil)
   }
   
-  // MARK: Actions
-  
-  @IBAction func pickAnImage(_ sender: AnyObject) {
-    if sender.tag == 1 {
-      getImagePickerController(.camera)
-    } else {
-      getImagePickerController(.photoLibrary)
-    }
-  }
+
   
 }
 
